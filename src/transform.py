@@ -1,7 +1,7 @@
 import logging
 import os
 
-from src.transformations.clean import clean_data
+from src.transformations.clean import type_transform
 
 import pandas as pd
 
@@ -31,6 +31,6 @@ def transform():
 
     df = pd.read_csv('data/raw/dataset.csv')
     
-    df_cleaned = clean_data(df)
+    df_cleaned = type_transform(df)
     
     df_cleaned.to_parquet(f'{path_silver()}dataset_silver.parquet', index=False)

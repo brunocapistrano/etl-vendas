@@ -10,3 +10,10 @@ DIM Produtos Eletronicos
 DIM Pessoas
 - Vendas por pessoa
 - Quem vendeu mais em quantidade e preço
+
+Fato
+- id_customer
+- id_product
+
+DIM Clientes
+- id (customer_id)

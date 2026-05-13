@@ -1,9 +1,9 @@
 import pandas as pd
 
 
-def clean_data(df: pd.DataFrame) -> pd.DataFrame:
+def type_transform(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Cleans the input DataFrame by performing the following operations:
+    Transforms the data types of the input DataFrame by performing the following operations:
     
         1. Convert column 'first_purchase_date', 'last_purchase_date' 
     and 'order_date' to datetime in the format YYYY-MM-DD.
@@ -17,4 +17,4 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 if __name__ == "__main__":
-    clean_data()
+    type_transform()
