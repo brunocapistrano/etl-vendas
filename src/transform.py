@@ -1,6 +1,6 @@
 import logging
-import os
 
+from src.config import ROOT, RAW_PATH
 from src.transformations.clean import type_transform
 
 import pandas as pd
@@ -9,28 +9,17 @@ import pandas as pd
 logger = logging.getLogger(__name__)
 
 def path_silver():
-    """ Verifica se a pasta 'silver' existe dentro da pasta 'data', caso contrário, cria a pasta. 
-        Retorna o caminho completo do arquivo 'dataset_silver.csv' dentro da pasta 'data/silver'. """
-
-    logger.info("Iniciando detecção de output path.")
-        
-    if not os.path.exists('data'):
-        logger.error("Pasta 'data' não existe.")    
-    if not os.path.exists('data/silver'):
-        os.makedirs('data/silver')
-        logger.info("Pasta 'silver' criada com sucesso dentro da pasta 'data'.")
-
-    logger.info("Output path detectado com sucesso.")
-    return 'data/silver/'
+    silver_path = ROOT / 'data' / 'silver'
+    silver_path.mkdir(parents=True, exist_ok=True)
+    logger.info("Pasta 'silver' criada/verificada com sucesso em: %s", silver_path)
+    return silver_path
 
 
 def transform():
-    """ Lê o arquivo 'dataset.csv' da pasta 'data/raw', realiza a transformação dos dados e salva o arquivo transformado na pasta 'data/processed' com o nome 'dataset_transformed.csv'. """
-
     logger.info("Iniciando a transformação dos dados...")
 
-    df = pd.read_csv('data/raw/dataset.csv')
+    df = pd.read_csv(str(RAW_PATH / 'dataset.csv'))
     
     df_cleaned = type_transform(df)
     
-    df_cleaned.to_parquet(f'{path_silver()}dataset_silver.parquet', index=False)
+    df_cleaned.to_parquet(str(path_silver() / 'dataset_silver.parquet'), index=False)

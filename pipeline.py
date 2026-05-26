@@ -1,4 +1,6 @@
 from src.extract import extract
+from src.database import init_db
+from src.load import load
 from src.transform import transform
 
 import logging
@@ -12,10 +14,9 @@ def main():
     logger.info("Iniciando o processo de extração dos dados...")
     extract()
     logger.info("Processo de extração concluído com sucesso.")
+    init_db()  
+    load()
     
-    logger.info("Iniciando o processo de transformação dos dados...")
-    transform()
-    logger.info("Processo de transformação concluído com sucesso.")
 
 if __name__ == "__main__":
     main()

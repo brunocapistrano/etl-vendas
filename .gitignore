@@ -9,3 +9,8 @@ wheels/
 # Virtual environments
 .venv
 
+# Data files generated at runtime
+data/raw/
+data/silver/
+data/*.duckdb
+
